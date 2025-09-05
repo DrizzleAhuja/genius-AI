@@ -148,7 +148,13 @@ const CodePage = () => {
                     }}
                     className="text-sm overflow-hidden leading-7"
                   >
-                    {message.content || ""}
+                    {typeof message.content === "string"
+                      ? message.content
+                      : message.content
+                        ? message.content
+                            .map((part) => ("text" in part ? part.text : ""))
+                            .join("")
+                        : ""}
                   </ReactMarkdown>
                 </p>
               </div>
